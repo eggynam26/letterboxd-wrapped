@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chris's Letterboxd Wrapped</title>
+<style>
+  :root { --bg:#14181c; --fg:#fff; --muted:#9ab; --orange:#ff8000; --green:#00e054; --blue:#40bcf4; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family: system-ui, sans-serif; }
+  .slides { height:100vh; overflow-y:scroll; scroll-snap-type:y mandatory; }
+  section { height:100vh; scroll-snap-align:start; display:flex; flex-direction:column;
+            justify-content:center; align-items:center; padding:24px; text-align:center; }
+  section:nth-child(3n+1) { background:linear-gradient(160deg,#14181c,#3a1f00); }
+  section:nth-child(3n+2) { background:linear-gradient(160deg,#14181c,#003a14); }
+  section:nth-child(3n)   { background:linear-gradient(160deg,#14181c,#002a3a); }
+  .big { font-size:clamp(4rem,18vw,10rem); font-weight:800; line-height:1; }
+  .label { color:var(--muted); font-size:1.25rem; margin-top:12px; }
+  h2 { font-size:clamp(1.5rem,5vw,2.5rem); margin:0 0 24px; }
+  .bars { display:flex; align-items:flex-end; gap:6px; height:220px; width:min(640px,100%); }
+  .bar { flex:1; background:var(--green); border-radius:4px 4px 0 0; position:relative; }
+  .bar span { position:absolute; bottom:-22px; left:0; right:0; font-size:.75rem; color:var(--muted); }
+  ol { text-align:left; font-size:1.25rem; line-height:2; }
+  .stars { color:var(--green); }
+  .accent { color:var(--orange); }
+</style>
+</head>
+<body>
+<div class="slides">
+  <section>
+    <div class="label">2025 on Letterboxd</div>
+    <h2>Chris's Wrapped</h2>
+    <div class="label">Scroll down ↓</div>
+  </section>
+
+  <section>
+    <div class="big accent">57</div>
+    <div class="label">films logged (57 unique, 1 rewatches)</div>
+  </section>
+
+  
+  <section>
+    <div class="label">It all started with</div>
+    <h2>Flow (2024)</h2>
+    <div class="label">on January 07</div>
+  </section>
+  
+
+  <section>
+    <h2>Your year, month by month</h2>
+    <div class="bars">
+      
+      <div class="bar" style="height:55.0%" title="6 films"><span>Jan</span></div>
+      
+      <div class="bar" style="height:36.0%" title="4 films"><span>Feb</span></div>
+      
+      <div class="bar" style="height:9.0%" title="1 films"><span>Mar</span></div>
+      
+      <div class="bar" style="height:0.0%" title="0 films"><span>Apr</span></div>
+      
+      <div class="bar" style="height:0.0%" title="0 films"><span>May</span></div>
+      
+      <div class="bar" style="height:73.0%" title="8 films"><span>Jun</span></div>
+      
+      <div class="bar" style="height:73.0%" title="8 films"><span>Jul</span></div>
+      
+      <div class="bar" style="height:100.0%" title="11 films"><span>Aug</span></div>
+      
+      <div class="bar" style="height:18.0%" title="2 films"><span>Sep</span></div>
+      
+      <div class="bar" style="height:18.0%" title="2 films"><span>Oct</span></div>
+      
+      <div class="bar" style="height:82.0%" title="9 films"><span>Nov</span></div>
+      
+      <div class="bar" style="height:55.0%" title="6 films"><span>Dec</span></div>
+      
+    </div>
+    <div class="label" style="margin-top:36px">Aug was your busiest month. You love a Thursday movie.</div>
+  </section>
+
+  
+  <section>
+    <div class="big stars">3.55★</div>
+    <div class="label">your average rating</div>
+  </section>
+  
+
+  <section>
+    <h2>Your top films</h2>
+    <ol>
+      
+      <li>About Time (2013) <span class="stars">5.0★</span></li>
+      
+      <li>Flow (2024) <span class="stars">4.5★</span></li>
+      
+      <li>The Social Network (2010) <span class="stars">4.5★</span></li>
+      
+      <li>Where the Crawdads Sing (2022) <span class="stars">4.5★</span></li>
+      
+      <li>Pride & Prejudice (2005) <span class="stars">4.5★</span></li>
+      
+    </ol>
+  </section>
+
+  <section>
+    <div class="big accent">2020s</div>
+    <div class="label">your favorite decade to visit</div>
+  </section>
+</div>
+</body>
+</html>

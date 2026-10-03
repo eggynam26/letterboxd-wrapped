@@ -6,6 +6,13 @@ Usage:
     3. python wrapped.py path/to/export_folder --year 2026
     4. Open wrapped.html in a browser.
 """
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load TMDB_API_KEY from .env if present
+
+key = os.environ.get("TMDB_API_KEY")
+
 import argparse
 from pathlib import Path
 
