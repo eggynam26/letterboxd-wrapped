@@ -6,18 +6,13 @@ Usage:
     3. python wrapped.py path/to/export_folder --year 2026
     4. Open wrapped.html in a browser.
 """
-import os
-from dotenv import load_dotenv
-
-load_dotenv()  # Load TMDB_API_KEY from .env if present
-
-key = os.environ.get("TMDB_API_KEY")
-
 import argparse
 from pathlib import Path
 
 import pandas as pd
 from jinja2 import Template
+
+from posters import get_posters
 
 
 def load_diary(export_dir: Path, year: int | None) -> pd.DataFrame:
@@ -66,12 +61,14 @@ def main():
     p.add_argument("--year", type=int, default=None)
     p.add_argument("--user", default="you")
     p.add_argument("--out", type=Path, default=Path("wrapped.html"))
+    p.add_argument("--no-posters", action="store_true", help="skip the TMDB poster lookup")
     args = p.parse_args()
 
     diary = load_diary(args.export_dir, args.year)
     if diary.empty:
         raise SystemExit("No diary entries found for that year.")
     stats = compute_stats(diary)
+    stats["posters"] = [] if args.no_posters else get_posters(diary)
     args.out.write_text(TEMPLATE.render(s=stats, user=args.user, year=args.year or "All time"))
     print(f"Wrote {args.out} ({stats['total']} films)")
 
