@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ user }}'s Letterboxd Wrapped</title>
+<style>
+  :root { --bg:#14181c; --fg:#fff; --muted:#9ab; --orange:#ff8000; --green:#00e054; --blue:#40bcf4; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family: system-ui, sans-serif; }
+  .slides { height:100vh; overflow-y:scroll; scroll-snap-type:y mandatory; }
+  section { height:100vh; scroll-snap-align:start; display:flex; flex-direction:column;
+            justify-content:center; align-items:center; padding:24px; text-align:center; }
+  section:nth-child(3n+1) { background:linear-gradient(160deg,#14181c,#3a1f00); }
+  section:nth-child(3n+2) { background:linear-gradient(160deg,#14181c,#003a14); }
+  section:nth-child(3n)   { background:linear-gradient(160deg,#14181c,#002a3a); }
+  .big { font-size:clamp(4rem,18vw,10rem); font-weight:800; line-height:1; }
+  .label { color:var(--muted); font-size:1.25rem; margin-top:12px; }
+  h2 { font-size:clamp(1.5rem,5vw,2.5rem); margin:0 0 24px; }
+  .bars { display:flex; align-items:flex-end; gap:6px; height:220px; width:min(640px,100%); }
+  .bar { flex:1; background:var(--green); border-radius:4px 4px 0 0; position:relative; }
+  .bar span { position:absolute; bottom:-22px; left:0; right:0; font-size:.75rem; color:var(--muted); }
+  ol { text-align:left; font-size:1.25rem; line-height:2; }
+  .stars { color:var(--green); }
+  .accent { color:var(--orange); }
+</style>
+</head>
+<body>
+<div class="slides">
+  <section>
+    <div class="label">{{ year }} on Letterboxd</div>
+    <h2>{{ user }}'s Wrapped</h2>
+    <div class="label">Scroll down ↓</div>
+  </section>
+
+  <section>
+    <div class="big accent">{{ s.total }}</div>
+    <div class="label">films logged ({{ s.unique }} unique, {{ s.rewatches }} rewatches)</div>
+  </section>
+
+  {% if s.first %}
+  <section>
+    <div class="label">It all started with</div>
+    <h2>{{ s.first['Name'] }} ({{ s.first['Year'] }})</h2>
+    <div class="label">on {{ s.first['Watched Date'].strftime('%B %d') }}</div>
+  </section>
+  {% endif %}
+
+  <section>
+    <h2>Your year, month by month</h2>
+    <div class="bars">
+      {% for m, n in s.by_month.items() %}
+      <div class="bar" style="height:{{ (n / s.max_month * 100)|round }}%" title="{{ n }} films"><span>{{ m }}</span></div>
+      {% endfor %}
+    </div>
+    <div class="label" style="margin-top:36px">{{ s.busiest_month }} was your busiest month. You love a {{ s.fav_weekday }} movie.</div>
+  </section>
+
+  {% if s.avg_rating %}
+  <section>
+    <div class="big stars">{{ s.avg_rating }}★</div>
+    <div class="label">your average rating</div>
+  </section>
+  {% endif %}
+
+  <section>
+    <h2>Your top films</h2>
+    <ol>
+      {% for f in s.top_films %}
+      <li>{{ f['Name'] }} ({{ f['Year'] }}) <span class="stars">{{ f['Rating'] }}★</span></li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section>
+    <div class="big accent">{{ s.fav_decade }}</div>
+    <div class="label">your favorite decade to visit</div>
+  </section>
+</div>
+</body>
+</html>
